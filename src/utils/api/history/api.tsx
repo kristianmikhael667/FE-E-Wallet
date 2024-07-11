@@ -1,8 +1,8 @@
 import callAPI from "../axiosWithConfig";
 
-export async function getHistory() {
+export async function getHistory(currentPage: number) {
   const ROOT_API = import.meta.env.VITE_REACT_API_URL;
-  const url = `${ROOT_API}/wallet-service/history/7f127e1d-4fdb-447b-bdde-59097dcbe729`;
+  const url = `${ROOT_API}/wallet-service/history?p=${currentPage}`;
 
   return callAPI({
     url,
