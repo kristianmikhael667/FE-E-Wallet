@@ -20,7 +20,7 @@ const Header = () => {
   const sidebarRef = useRef<HTMLDivElement>(null);
 
   const toggleSidebar = () => {
-    setIsSidebarOpen(!isSidebarOpen);
+    setIsSidebarOpen(!isSidebarOpen); // Toggle the sidebar state
   };
 
   const handleClickOutside = (event: MouseEvent) => {
@@ -48,6 +48,10 @@ const Header = () => {
     setOpenLogout(true);
   };
 
+  const handleNavLinkClick = () => {
+    setIsSidebarOpen(false);
+  };
+
   // Remove Cookies
   const removeCookies = () => {
     setOpenLogout(false);
@@ -71,6 +75,7 @@ const Header = () => {
               type="button"
               className="text-xl mr-5 select-none"
               onClick={toggleSidebar}
+              aria-expanded={isSidebarOpen ? "true" : "false"}
             >
               Hi, <span className="font-bold">{user.full_name}</span>
             </button>
@@ -89,6 +94,7 @@ const Header = () => {
                       ? `text-primary-first`
                       : "text-black"
                   } flex px-4 py-2 hover:bg-gray-100`}
+                  onClick={handleNavLinkClick}
                 >
                   <div
                     className={`${
@@ -108,6 +114,7 @@ const Header = () => {
                       ? `text-primary-first`
                       : "text-black"
                   } flex px-4 py-2 hover:bg-gray-100`}
+                  onClick={handleNavLinkClick}
                 >
                   <div
                     className={`${
@@ -127,6 +134,7 @@ const Header = () => {
                       ? `text-primary-first`
                       : "text-black"
                   } flex px-4 py-2 hover:bg-gray-100`}
+                  onClick={handleNavLinkClick}
                 >
                   <div
                     className={`${
