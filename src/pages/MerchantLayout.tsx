@@ -94,7 +94,7 @@ const MerchantLayout: React.FC = () => {
             <Link to="/merchant" className="flex flex-col items-center my-5">
               <img src={LogoIcon} alt="logo" height={60} width={60} />
               <span className="self-center text-lg font-medium whitespace-nowrap text-neutral-600">
-                Altapay | Merchant
+                doomo | Merchant
               </span>
             </Link>
           </div>
@@ -251,7 +251,7 @@ const MerchantLayout: React.FC = () => {
         </div>
 
         <footer className="px-12 tablet:px-3 mobile:px-3 py-4 flex justify-between bg-gray-50 shadow-lg rounded-md absolute bottom-0 left-0 right-0 z-10">
-          <span className="text-neutral-400">© 2024 Copyright: Altapay</span>
+          <span className="text-neutral-400">© 2024 Copyright: doomo</span>
         </footer>
       </div>
     </div>

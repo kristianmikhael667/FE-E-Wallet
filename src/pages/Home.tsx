@@ -72,7 +72,7 @@ const Home = () => {
               )}
             </p>
             <p className="font-light text-white text-xs">
-              Current AltaPay Wallet Balance
+              Current doomo Wallet Balance
             </p>
           </div>
           <div className="mobile:mt-5">

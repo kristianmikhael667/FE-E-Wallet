@@ -131,7 +131,7 @@ const LoginByPin = () => {
             </form>
           </Form>
           <p className="text-end mt-2">
-            Baru di AltaPay?{" "}
+            Baru di doomo?{" "}
             <Link
               to={"/register"}
               className="text-lg font-semibold text-[#737373] hover:text-black"
