@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import { numberWithCommas } from "../utils/hooks/usePrice";
 import dayjs from "dayjs";
 
@@ -6,53 +6,40 @@ const HistoryComp = (props: {
   date: string;
   status: string;
   name: string;
-  type: string;
-  price: number;
+  type: number;
+  price: string;
   id?: number;
 }) => {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
-  const cardDetail = () => {
-    const key =
-      props.type === "payment"
-        ? `/payment-detail?price=${props.price}`
-        : `/top-up-status?id=${props.id}`;
-    navigate(key);
-  };
+  // const cardDetail = () => {
+  //   const key =
+  //     props.type === 0
+  //       ? `/payment-detail?price=${props.price}`
+  //       : `/top-up-status?id=${props.id}`;
+  //   navigate(key);
+  // };
 
   return (
     <div
       className="bg-white mb-5 hover:bg-slate-400 py-2 px-2"
-      onClick={cardDetail}
+      // onClick={cardDetail}
     >
-      <div className="flex justify-between">
-        <p className="font-light">{dayjs(props.date).format("MMM D, YYYY h:mm A")}</p>
-        <div
-          className={`${
-            props.status == "Paid"
-              ? `bg-green-600`
-              : props.status == "Success"
-              ? `bg-blue-600`
-              : props.status == "Pending"
-              ? `bg-yellow-500`
-              : `bg-red-600`
-          } rounded-full`}
-        >
-          <p className="px-3 py-3 text-white uppercase">{props.status}</p>
-        </div>
-      </div>
-      <div className="flex justify-between">
-        <div className="">
+      <div className="flex justify-between items-center">
+        <div>
+          <p className="font-light">
+            {dayjs(props.date).format("MMM D, YYYY h:mm A")}
+          </p>
+
           <p className="font-medium mb-2">{props.name}</p>
-          <p className="font-thin">{props.type}</p>
         </div>
-        <div className="flex items-end">
+        <div>
           <p
             className={`${
-              props.type === "payment" ? `text-red-600` : `text-green-600`
+              props.type === 0 ? `text-red-600` : `text-green-600`
             }`}
           >
-            {props.type === "payment" ? <span>-</span> : null}Rp{" "}
+            {props.type === 0 ? <span>-</span> : null}Rp{" "}
             <span>{numberWithCommas(props.price)}</span>
           </p>
         </div>

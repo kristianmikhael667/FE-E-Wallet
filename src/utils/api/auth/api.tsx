@@ -1,9 +1,9 @@
 import callAPI from "../axiosWithConfig";
-import { LoginType, RegisterType } from "./types";
+import { LoginByPinType, RegisterType } from "./types";
 
-export async function userLogin(data: LoginType) {
+export async function userLogin(data: LoginByPinType) {
   const ROOT_API = import.meta.env.VITE_REACT_API_URL;
-  const url = `${ROOT_API}/login`;
+  const url = `${ROOT_API}/user-service/loginbypin`;
 
   return callAPI({
     url,

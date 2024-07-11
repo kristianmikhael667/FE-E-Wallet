@@ -1,28 +1,26 @@
-import React from "react";
 import { Link } from "react-router-dom";
 
 const Menu = (props: {
   source: string;
   name: string;
   navigate: string;
-  isMaintenance: boolean;
+  status: number;
 }) => {
   return (
     <Link
-      style={{ pointerEvents: props.isMaintenance == false ? "auto" : "none" }}
-      className="mx-auto"
+      style={{ pointerEvents: props.status == 0 ? "auto" : "none" }}
       to={props.navigate}
     >
-      <div className="rounded-full hover:bg-yellow-500 w-44 h-44 mobile:w-28 mobile:h-28 bg-yellow-200 flex justify-center items-center p-0">
+      <div className="w-auto h-auto mobile:w-auto mobile:h-auto flex justify-center items-center p-0">
         <img
           src={props.source}
           alt=""
-          className={`w-28 h-28 mobile:w-16 mobile:h-16 ${
-            props.isMaintenance == false ? `opacity-100` : `opacity-55`
+          className={`hover:bg-slate-400 hover:rounded-full w-28 h-28 mobile:w-16 mobile:h-16 ${
+            props.status == 0 ? `opacity-100` : `opacity-55`
           }`}
         />
         <p
-          hidden={props.isMaintenance == false ? true : false}
+          hidden={props.status == 0 ? true : false}
           className="text-primary-first font-extrabold text-2xl transform -rotate-45 absolute mobile:text-sm tablet:text-lg"
         >
           Maintenance
@@ -30,15 +28,10 @@ const Menu = (props: {
       </div>
       <p
         className={`text-center mt-2 text-xl font-bold ${
-          props.isMaintenance == false ? `opacity-100` : `opacity-55`
+          props.status == 0 ? `opacity-100` : `opacity-55`
         }`}
       >
-        {props.name.split(" ").map((word, index) => (
-          <React.Fragment key={index}>
-            {word}
-            {index < props.name.split(" ").length - 1 && <br />}
-          </React.Fragment>
-        ))}
+        {props.name}
       </p>{" "}
     </Link>
   );

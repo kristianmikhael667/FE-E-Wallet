@@ -72,7 +72,7 @@ const Header = () => {
               className="text-xl mr-5 select-none"
               onClick={toggleSidebar}
             >
-              Hi, <span className="font-bold">{user.name}</span>
+              Hi, <span className="font-bold">{user.full_name}</span>
             </button>
 
             <div

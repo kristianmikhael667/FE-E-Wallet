@@ -1,8 +1,8 @@
 import { userLogin, userRegister, merchantRegister } from "./api";
 import {
-  loginSchema,
+  loginByPinSchema,
   LoginTypes,
-  LoginType,
+  LoginByPinType,
   registerSchema,
   RegisterType,
   ModelLogoutProps,
@@ -10,9 +10,9 @@ import {
 
 export {
   userLogin,
-  loginSchema,
+  loginByPinSchema,
   userRegister,
   merchantRegister,
   registerSchema,
 };
-export type { LoginTypes, LoginType, RegisterType, ModelLogoutProps };
+export type { LoginTypes, LoginByPinType, RegisterType, ModelLogoutProps };

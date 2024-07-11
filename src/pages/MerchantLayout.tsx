@@ -243,7 +243,7 @@ const MerchantLayout: React.FC = () => {
               />
 
               <div className="font-medium my-6 text-neutral-600">
-                <p>{user.name}</p>
+                <p>{user.full_name}</p>
               </div>
             </div>
           </nav>

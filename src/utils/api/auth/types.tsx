@@ -1,8 +1,8 @@
 import { ReactNode } from "react";
 import * as z from "zod";
 
-export const loginSchema = z.object({
-  phone_number: z
+export const loginByPinSchema = z.object({
+  phone: z
     .string()
     .min(1, { message: "Phone Number is required" })
     .max(15, { message: "Phone Number minimum 10 character" }),
@@ -33,5 +33,5 @@ export interface ModelLogoutProps {
   children: ReactNode;
 }
 
-export type LoginType = z.infer<typeof loginSchema>;
+export type LoginByPinType = z.infer<typeof loginByPinSchema>;
 export type RegisterType = z.infer<typeof registerSchema>;

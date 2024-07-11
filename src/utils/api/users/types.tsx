@@ -14,10 +14,26 @@ export const profileUpdateSchema = z.object({
 export type RoleType = "Customer" | "Merchant";
 
 export interface ProfileType {
-  id: number;
-  name: string;
+  uid: string;
+  full_name: string;
+  username: string;
+  address: string;
+  id_card_number: string;
+  short_bio: string;
+  avatar_url: string;
   email: string;
-  role: RoleType;
+  phone: string;
+  device_id: string;
+  auth_key: string;
+  status: number;
+  pin_set: number;
+  created_at: string;
+  updated_at: string;
+  links: Links;
+}
+
+export interface Links {
+  self: string;
 }
 
 export const editProfileSchema = z.object({
