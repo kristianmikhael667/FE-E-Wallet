@@ -10,6 +10,7 @@ import {
 import { useToast } from "@/components/ui/use-toast";
 import { ProfileType, userProfile } from "@/utils/api/users";
 import Cookies from "js-cookie";
+import { jwtDecode } from "jwt-decode";
 
 interface Context {
   token: string;
@@ -27,8 +28,17 @@ const contextValue = {
   changeToken: () => {},
 };
 
-const TokenContext = createContext<Context>(contextValue);
+interface MyJwtPayload {
+  iat: number;
+  exp: number;
+  jti: string;
+  sub: string;
+  isAdmin: boolean;
+  uid: string;
+  scope: string[];
+}
 
+const TokenContext = createContext<Context>(contextValue);
 export function TokenProvider({ children }: Readonly<Props>) {
   const { toast } = useToast();
 
@@ -43,7 +53,9 @@ export function TokenProvider({ children }: Readonly<Props>) {
 
   const getProfile = useCallback(async () => {
     try {
-      const result = await userProfile();
+      const tokenBase64 = atob(token);
+      const decodedToken = jwtDecode<MyJwtPayload>(tokenBase64);
+      const result = await userProfile(decodedToken.uid);
       setUser(result.data.data);
     } catch (error) {
       toast({

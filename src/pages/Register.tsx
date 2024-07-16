@@ -1,7 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useState, ChangeEvent } from "react";
-import { LogoIcon } from "@/assets/logo";
-import { ImageCustomer, ImageStore } from "@/assets/image";
 import {
   merchantRegister,
   registerSchema,
@@ -81,7 +79,7 @@ const Register = () => {
       <div className="flex flex-col justify-center items-center container lg:px-96 md:px-64 sm:px-32 xs:px-24">
         <div className="py-3 px-5 w-full bg-[#F3F6FF] rounded-xl">
           <div className="flex justify-center">
-            <img src={LogoIcon} className="flex justify-center mb-2" />
+            <img src="/logo/logo.svg" className="flex justify-center mb-2" />
           </div>
           <Form {...form}>
             <form
@@ -105,7 +103,7 @@ const Register = () => {
                         <div className="flex flex-col space-x-3 space-y-0 p-3">
                           <div className="flex flex-col items-center justify-center font-bold text-lg lg:text-xl">
                             <img
-                              src={ImageCustomer}
+                              src={"ImageCustomer"}
                               alt="Customer"
                               className="w-16 pb-3"
                             />
@@ -124,7 +122,7 @@ const Register = () => {
                         <div className="flex flex-col space-x-3 space-y-0 p-3">
                           <div className="flex flex-col items-center justify-center font-bold text-lg lg:text-xl">
                             <img
-                              src={ImageStore}
+                              src={"ImageStore"}
                               alt="Merchant"
                               className="w-16 pb-3"
                             />

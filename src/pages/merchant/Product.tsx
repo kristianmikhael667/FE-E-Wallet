@@ -1,4 +1,3 @@
-import { ImageFood } from "@/assets/image";
 import { Daum, getAllProduct } from "@/utils/api/merchant/product";
 import { userProfile } from "@/utils/api/users";
 import { atom, useAtom } from "jotai";
@@ -16,7 +15,7 @@ const Product = () => {
   const [users, setUsers] = useAtom(userAtom);
 
   const getProfiles = useCallback(async () => {
-    const response = await userProfile();
+    const response = await userProfile("dsds");
     if (response.statusCode == 200) {
       setUsers(response.data.data);
     } else {
@@ -72,7 +71,7 @@ const Product = () => {
                 <img
                   className="absolute left-0 top-0 w-full h-full object-cover object-center transition duration-50"
                   loading="lazy"
-                  src={item.product_images || ImageFood}
+                  src={item.product_images || "ImageFood"}
                   alt={item.product_name}
                 />
               </div>

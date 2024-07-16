@@ -3,7 +3,6 @@ import { userWallet } from "@/utils/api/wallet";
 import { atom, useAtom } from "jotai";
 import { useCallback, useEffect } from "react";
 import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
-import { LogoDelete, LogoEdit, LogoUser } from "../assets/logo";
 import { numberWithCommas } from "../utils/hooks/usePrice";
 
 const walletAtom = atom(0);
@@ -101,7 +100,12 @@ const Checkout = () => {
             </p>
             <div className="flex gap-2 items-center mb-2">
               <div className="bg-yellow-200 rounded-full w-10 h-10 flex items-center justify-center">
-                <img src={LogoUser} alt="user" width={30} height={30} />
+                <img
+                  src="/logo/profile.svg"
+                  alt="user"
+                  width={30}
+                  height={30}
+                />
               </div>
               <p className="font-extralight">
                 {state.dataCheckout.merchant_name}
@@ -118,10 +122,10 @@ const Checkout = () => {
                 to={`/product-detail/${state.dataCheckout.product_id}`}
                 className="bg-white rounded-full p-1"
               >
-                <img src={LogoEdit} alt="edit" width={30} height={30} />
+                <img src="/logo/edit.svg" alt="edit" width={30} height={30} />
               </Link>
               <Link to={"/product-list"} className="bg-white rounded-full p-1">
-                <img src={LogoDelete} alt="delete" width={30} height={30} />
+                <img src="delete" alt="delete" width={30} height={30} />
               </Link>
             </div>
           </div>

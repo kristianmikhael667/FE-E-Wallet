@@ -1,9 +1,9 @@
 import callAPI from "../axiosWithConfig";
 import { EditProfileType, UpdatePictureType } from "./types";
 
-export async function userProfile() {
+export async function userProfile(uid: string) {
   const ROOT_API = import.meta.env.VITE_REACT_API_URL;
-  const url = `${ROOT_API}/user-service/users/7f127e1d-4fdb-447b-bdde-59097dcbe729`;
+  const url = `${ROOT_API}/user-service/users/${uid}`;
 
   return callAPI({
     url,

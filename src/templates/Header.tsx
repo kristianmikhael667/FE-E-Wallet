@@ -3,8 +3,6 @@ import { useToken } from "@/utils/contexts/useToken";
 import { atom, useAtom } from "jotai";
 import { useEffect, useRef } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
-import { LogoHistory, LogoHome, LogoLogout } from "../assets/logo";
-import Logo from "../assets/logo/logo.svg";
 
 const openLogoutAtom = atom(false);
 const isOpenAtom = atom(false);
@@ -15,6 +13,7 @@ const Header = () => {
   const { pathname } = location;
   const splitLocation = pathname.split("/");
   const [openLogout, setOpenLogout] = useAtom(openLogoutAtom);
+  const ROOT_API = import.meta.env.VITE_REACT_API_URL;
 
   const [isSidebarOpen, setIsSidebarOpen] = useAtom(isOpenAtom);
   const sidebarRef = useRef<HTMLDivElement>(null);
@@ -55,6 +54,7 @@ const Header = () => {
   // Remove Cookies
   const removeCookies = () => {
     setOpenLogout(false);
+    setIsSidebarOpen(false);
     changeToken("");
   };
 
@@ -64,7 +64,7 @@ const Header = () => {
         <div className="flex justify-between items-center">
           <Link to={"/"}>
             <img
-              src={Logo}
+              src="/logo/logo.svg"
               alt="logo"
               className="mobile:w-20 mobile:h-20 w-32 h-32"
             />
@@ -93,19 +93,34 @@ const Header = () => {
                     splitLocation[1] === ""
                       ? `text-primary-first`
                       : "text-black"
-                  } flex px-4 py-2 hover:bg-gray-100`}
+                  } flex px-4 py-2 hover:bg-gray-100 items-center`}
                   onClick={handleNavLinkClick}
                 >
                   <div
                     className={`${
                       splitLocation[1] === ""
-                        ? `bg-primary-first`
-                        : `bg-secondary-first `
-                    } w-8 h-8 flex justify-center items-center rounded-full mr-2`}
+                        ? `bg-white border-primary-first`
+                        : `border-white`
+                    } w-8 h-8 flex justify-center items-center rounded-full mr-2 border-2`}
                   >
-                    <img src={LogoHome} alt="logohome" />
+                    <img
+                      src={`${
+                        splitLocation[1] === ""
+                          ? `/logo/home_act.svg`
+                          : `/logo/home_inact.svg`
+                      }`}
+                      alt="logohome"
+                    />
                   </div>
-                  <p>Home</p>
+                  <p
+                    className={`${
+                      splitLocation[1] === ""
+                        ? `text-primary-first font-bold`
+                        : `text-black`
+                    }`}
+                  >
+                    Home
+                  </p>
                 </NavLink>
                 <NavLink
                   to={"/history"}
@@ -119,13 +134,28 @@ const Header = () => {
                   <div
                     className={`${
                       splitLocation[1] === "history"
-                        ? `bg-primary-first`
-                        : `bg-secondary-first `
-                    } w-8 h-8 flex justify-center items-center rounded-full mr-2`}
+                        ? `bg-white border-primary-first`
+                        : `border-white`
+                    } w-8 h-8 flex justify-center items-center rounded-full mr-2 border-2`}
                   >
-                    <img src={LogoHistory} alt="logohistory" />
+                    <img
+                      src={`${
+                        splitLocation[1] === "history"
+                          ? `/logo/history_act.svg`
+                          : `/logo/history_inact.svg`
+                      }`}
+                      alt="logohistory"
+                    />
                   </div>
-                  <p>History</p>
+                  <p
+                    className={`${
+                      splitLocation[1] === "history"
+                        ? `text-primary-first font-bold`
+                        : `text-black`
+                    }`}
+                  >
+                    History
+                  </p>
                 </NavLink>
                 <NavLink
                   to={"/profile"}
@@ -139,21 +169,44 @@ const Header = () => {
                   <div
                     className={`${
                       splitLocation[1] === "profile"
-                        ? `bg-primary-first`
-                        : `bg-secondary-first `
-                    } w-8 h-8 flex justify-center items-center rounded-full mr-2`}
+                        ? `bg-white`
+                        : `border-white`
+                    } w-8 h-8 flex justify-center items-center rounded-full mr-2 border-2`}
                   >
-                    <img src={LogoHistory} alt="logohistory" />
+                    <img
+                      src={`${
+                        splitLocation[1] === "profile"
+                          ? `${ROOT_API + user.avatar_url}`
+                          : `/logo/profile.svg`
+                      }`}
+                      className="rounded-full w-auto h-auto"
+                      alt="logoprofile"
+                    />
                   </div>
-                  <p>My Profile</p>
+                  <p
+                    className={`${
+                      splitLocation[1] === "profile"
+                        ? `text-primary-first font-bold`
+                        : `text-black`
+                    }`}
+                  >
+                    My Profile
+                  </p>
                 </NavLink>
                 <NavLink
                   onClick={(e) => handleLogout(e)}
                   className="flex px-4 py-2 hover:bg-gray-100"
                   to="#"
                 >
-                  <div className="w-8 h-8 bg-secondary-first flex justify-center items-center rounded-full mr-2">
-                    <img src={LogoLogout} alt="logologout" />
+                  <div className="w-8 h-8 flex justify-center items-center rounded-full mr-2">
+                    <img
+                      src={`${
+                        openLogout
+                          ? `/logo/logout_act.svg`
+                          : `/logo/logout_inact.svg`
+                      }`}
+                      alt="logologout"
+                    />
                   </div>
                   <p>Logout</p>
                 </NavLink>

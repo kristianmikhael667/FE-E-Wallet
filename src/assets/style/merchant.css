@@ -1,9 +1,0 @@
-@media (min-width: 760px) {
-  #logo-sidebar {
-    transform: translateX(0);
-  }
-}
-
-.rounded-menu {
-  border-radius: 7px;
-}

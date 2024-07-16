@@ -1,4 +1,3 @@
-import { LogoPending, LogoSuccess } from "@/assets/logo";
 import { topUpPending } from "@/utils/api/topUp/api";
 import { numberWithCommas } from "@/utils/hooks/usePrice";
 import useQuery from "@/utils/hooks/useQuery";
@@ -44,14 +43,14 @@ const TopUpStatus = () => {
         <div className="flex justify-center items-center mb-5">
           {isSuccess.status === "Success" ? (
             <img
-              src={LogoSuccess}
+              src={"LogoSuccess"}
               width={250}
               height={250}
               alt="Success Logo"
             />
           ) : (
             <img
-              src={LogoPending}
+              src={"LogoPending"}
               width={250}
               height={250}
               alt="Pending Logo"

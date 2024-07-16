@@ -1,4 +1,3 @@
-import { ImageUser } from "@/assets/image";
 import { Daum, getSingleProduct } from "@/utils/api/product";
 import { atom, useAtom } from "jotai";
 import { useCallback, useEffect, useState } from "react";
@@ -90,7 +89,7 @@ const DetailFood = () => {
               <div className="flex items-center">
                 <img
                   className="w-7 h-7 me-4 rounded-full"
-                  src={ImageUser}
+                  src="/logo/logo.svg"
                   alt="imageuser"
                 />
 

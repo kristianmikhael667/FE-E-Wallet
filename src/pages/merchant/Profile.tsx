@@ -36,7 +36,7 @@ const Profile = () => {
 
   const getProfile = useCallback(async () => {
     isLoading(true);
-    const response = await userProfile();
+    const response = await userProfile("dd");
     if (response.statusCode === 200) {
       isLoading(false);
       setProfile(response.data.data);

@@ -28,7 +28,7 @@ const Home = () => {
 
   //mendapatkan id user untuk totalProduct
   const getProfiles = useCallback(async () => {
-    const response = await userProfile();
+    const response = await userProfile("dsds");
     if (response.statusCode == 200) {
       setUsers(response.data.data);
     } else {

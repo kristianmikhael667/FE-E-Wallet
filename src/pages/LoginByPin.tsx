@@ -3,7 +3,6 @@ import { loginByPinSchema, LoginByPinType, userLogin } from "@/utils/api/auth";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import { ChangeEvent } from "react";
-import Logo from "../assets/logo/logo.svg";
 import { Form, FormField, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -53,7 +52,7 @@ const LoginByPin = () => {
       <div className="container">
         <div className="p-20 mobile:p-5 w-full bg-[#F3F6FF] rounded-xl">
           <div className="flex justify-center">
-            <img src={Logo} className="flex justify-center mb-5" />
+            <img src="/logo/logo.svg" className="flex justify-center mb-5" />
           </div>
           <Form {...form}>
             <form
