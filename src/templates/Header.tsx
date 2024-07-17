@@ -128,7 +128,7 @@ const Header = () => {
                     splitLocation[1] === "history"
                       ? `text-primary-first`
                       : "text-black"
-                  } flex px-4 py-2 hover:bg-gray-100`}
+                  } flex px-4 py-2 hover:bg-gray-100 items-center`}
                   onClick={handleNavLinkClick}
                 >
                   <div
@@ -163,7 +163,7 @@ const Header = () => {
                     splitLocation[1] === "profile"
                       ? `text-primary-first`
                       : "text-black"
-                  } flex px-4 py-2 hover:bg-gray-100`}
+                  } flex px-4 py-2 hover:bg-gray-100 items-center`}
                   onClick={handleNavLinkClick}
                 >
                   <div
@@ -195,7 +195,7 @@ const Header = () => {
                 </NavLink>
                 <NavLink
                   onClick={(e) => handleLogout(e)}
-                  className="flex px-4 py-2 hover:bg-gray-100"
+                  className="flex px-4 py-2 hover:bg-gray-100 items-center"
                   to="#"
                 >
                   <div className="w-8 h-8 flex justify-center items-center rounded-full mr-2">
