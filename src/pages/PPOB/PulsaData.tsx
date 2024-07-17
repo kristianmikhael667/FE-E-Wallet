@@ -9,6 +9,7 @@ const searchAtom = atom("");
 const loadingAtom = atom(false);
 const ppobAtom = atom<DataPpob[]>([]);
 const selectAtom = atom<string>("pulsa");
+const selectItemsAtom = atom("");
 
 const PulsaData = () => {
   const ROOT_API = import.meta.env.VITE_REACT_API_URL;
@@ -16,6 +17,7 @@ const PulsaData = () => {
   const [loading, isLoading] = useAtom(loadingAtom);
   const [ppobs, setPpob] = useAtom(ppobAtom);
   const [selected, setSelected] = useAtom(selectAtom);
+  const [selectItem, setSelectItem] = useAtom(selectItemsAtom);
   console.log(loading);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -119,11 +121,22 @@ const PulsaData = () => {
         ) : (
           <>
             <p className="mt-2">Nominal</p>
-            <div className="grid grid-cols-6 gap-5 p-0 mt-2">
+            <div
+              className={`grid grid-cols-6 gap-5 p-0 mt-2 ${
+                selected == "pulsa"
+                  ? `mobile:grid-cols-2`
+                  : `mobile:grid-cols-1`
+              }`}
+            >
               {ppobs.map((ppob, id) => (
                 <div
+                  onClick={() => setSelectItem(ppob.product_id)}
                   key={id}
-                  className="border-primary-first border-2 p-4 rounded-xl hover:bg-primary-first hover:text-white cursor-pointer"
+                  className={`border-primary-first border-2 p-4 rounded-xl hover:bg-primary-first hover:text-white cursor-pointer ${
+                    selectItem === ppob.product_id
+                      ? `bg-primary-first text-white`
+                      : ``
+                  }`}
                 >
                   <p className="text-xl font-bold">{ppob.name}</p>
                   <p>Rp. {numberWithCommas(ppob.price)}</p>
