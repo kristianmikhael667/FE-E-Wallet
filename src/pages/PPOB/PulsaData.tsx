@@ -1,15 +1,19 @@
+import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { DataPpob, getAllPrefix } from "@/utils/api/ppob";
 import { numberWithCommas } from "@/utils/hooks/usePrice";
 import { Player } from "@lottiefiles/react-lottie-player";
 import { atom, useAtom } from "jotai";
 import React, { useCallback, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const searchAtom = atom("");
 const loadingAtom = atom(false);
 const ppobAtom = atom<DataPpob[]>([]);
 const selectAtom = atom<string>("pulsa");
-const selectItemsAtom = atom("");
+const selectItemsAtom = atom<Record<string, any>>({});
+
+const showButtonAtom = atom(false);
 
 const PulsaData = () => {
   const ROOT_API = import.meta.env.VITE_REACT_API_URL;
@@ -18,6 +22,8 @@ const PulsaData = () => {
   const [ppobs, setPpob] = useAtom(ppobAtom);
   const [selected, setSelected] = useAtom(selectAtom);
   const [selectItem, setSelectItem] = useAtom(selectItemsAtom);
+  const [showButton, setShowBottom] = useAtom(showButtonAtom);
+  const navigate = useNavigate();
   console.log(loading);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -30,7 +36,6 @@ const PulsaData = () => {
   const getPrefix = useCallback(async () => {
     isLoading(true);
     const response = await getAllPrefix(search, selected);
-
     if (response.statusCode == 200) {
       isLoading(false);
       setPpob(response.data);
@@ -42,7 +47,20 @@ const PulsaData = () => {
 
   useEffect(() => {
     getPrefix();
-  }, [getPrefix]);
+    if (Object.keys(selectItem).length !== 0 && search !== "") {
+      setShowBottom(true);
+    } else {
+      setShowBottom(false);
+    }
+  }, [getPrefix, selectItem, search]);
+
+  const handleCheckout = () => {
+    navigate("/checkout", {
+      state: {
+        selectItem,
+      },
+    });
+  };
 
   return (
     <section className="relative p-0 overflow-y-scroll h-screen py-36 mobile:py-28">
@@ -63,7 +81,7 @@ const PulsaData = () => {
           >
             <p
               className={`${
-                selected == "pulsa" ? `text-white` : `text-black`
+                selected == "pulsa" ? `text-secondary-first` : `text-black`
               } text-center`}
             >
               Pulsa
@@ -77,7 +95,7 @@ const PulsaData = () => {
           >
             <p
               className={`${
-                selected == "data" ? `text-white` : `text-black`
+                selected == "data" ? `text-secondary-first` : `text-black`
               } text-center`}
             >
               Paket Data
@@ -103,13 +121,23 @@ const PulsaData = () => {
           />
         </div>
         <Input
-          type="search"
-          autoComplete="true"
+          type="number"
+          autoComplete="off"
           name="search"
           onChange={handleChange}
           value={search}
           placeholder="Contoh 0812821906521"
         />
+
+        <Button
+          onClick={() => handleCheckout()}
+          className={`bg-secondary-first font-bold fixed bottom-5 p-7 rounded-full text-primary-first text-xl hover:bg-slate-500 ${
+            showButton ? `` : `hidden`
+          }`}
+        >
+          <img src="/logo/buy.svg" className="w-5 h-5 mr-2" />
+          <p>Next Pay</p>
+        </Button>
 
         {ppobs.length == 0 ? (
           <Player
@@ -120,7 +148,7 @@ const PulsaData = () => {
           ></Player>
         ) : (
           <>
-            <p className="mt-2">Nominal</p>
+            <p className="mt-3 text-2xl mb-3 font-semibold">Nominal</p>
             <div
               className={`grid grid-cols-6 gap-5 p-0 mt-2 ${
                 selected == "pulsa"
@@ -130,10 +158,11 @@ const PulsaData = () => {
             >
               {ppobs.map((ppob, id) => (
                 <div
-                  onClick={() => setSelectItem(ppob.product_id)}
+                  onClick={() => setSelectItem(ppob)}
                   key={id}
                   className={`border-primary-first border-2 p-4 rounded-xl hover:bg-primary-first hover:text-white cursor-pointer ${
-                    selectItem === ppob.product_id
+                    Object.keys(selectItem).length !== 0 &&
+                    selectItem.product_id === ppob.product_id
                       ? `bg-primary-first text-white`
                       : ``
                   }`}
