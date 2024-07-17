@@ -2,7 +2,6 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Home from "../pages/Home";
 import Layout from "../pages/Layout";
 import Profile from "../pages/Profile";
-import Foodcourt from "../pages/Foodcourt";
 import DetailFood from "../pages/DetailFood";
 import Register from "../pages/Register";
 import History from "../pages/History";
@@ -15,6 +14,7 @@ import PaymentStatus from "../pages/PaymentStatus";
 import ProtectedRoute from "./ProtectedRoute";
 import NoPage from "@/pages/NoPage";
 import LoginByPin from "../pages/LoginByPin";
+import PulsaData from "@/pages/PPOB/PulsaData";
 
 const Routes = () => {
   const router = createBrowserRouter([
@@ -34,8 +34,8 @@ const Routes = () => {
               element: <Profile />,
             },
             {
-              path: "/product-list",
-              element: <Foodcourt />,
+              path: "/PulsaData",
+              element: <PulsaData />,
             },
             {
               path: "/product-detail/:id",

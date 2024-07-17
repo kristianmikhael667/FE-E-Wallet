@@ -55,9 +55,13 @@ export default async function callAPI({
     headers,
   }).catch((err) => err.response);
 
+  if (respon.status == 401) {
+    Cookies.remove("token");
+    window.location.reload();
+  }
+
   if (
     respon.status == 400 ||
-    respon.status == 401 ||
     respon.status == 403 ||
     respon.status == 404 ||
     respon.status == 500

@@ -77,7 +77,10 @@ const Header = () => {
               onClick={toggleSidebar}
               aria-expanded={isSidebarOpen ? "true" : "false"}
             >
-              Hi, <span className="font-bold">{user.full_name}</span>
+              Hi,{" "}
+              <span className="font-bold">
+                {user.full_name != undefined ? user.full_name : ""}
+              </span>
             </button>
 
             <div
