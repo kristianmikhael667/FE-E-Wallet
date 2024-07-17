@@ -9,7 +9,7 @@ const ProtectedRoute = () => {
   const protectedByToken = [
     "/",
     "/profile",
-    "/product-list",
+    "/PulsaData",
     /^\/product-detail\/\d+$/,
     "/history",
     "/top-up",
@@ -30,7 +30,7 @@ const ProtectedRoute = () => {
   const userProtected = [
     "/",
     "/profile",
-    "/product-list",
+    "/PulsaData",
     /^\/product-detail\/\d+$/,
     "/history",
     "/top-up",
